@@ -1,97 +1,27 @@
-<?php
-  if (!empty($_GET['q'])) {
-    switch ($_GET['q']) {
-      case 'info':
-        phpinfo(); 
-        exit;
-      break;
-    }
-  }
-?>
+<!--
+Created by                 
+ Yb  db  dP.d88 8d8b. 
+  YbdPYbdP 8  8 8P Y8 
+   YP  YP  `Y88 8   8 
+-->
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-		<style type="text/css">	
-				
-			/* striped propierty */
-			tbody tr:nth-child(odd) {
-			   background-color: #f7f7f7;
-			}
-			tr:nth-child(even) td {
-				border-left: 2px solid #f7f7f7 !important; 
-				border-bottom: 2px solid #f7f7f7 !important;
-			}
-			tr:nth-child(odd) td {
-				border: 2px solid white !important;
-			}					
-			table th:nth-child(odd) {
-				color: #1e3689;
-				background: #ece79c;
-			}			
-			
-			/* custom tags */
-			.col-lg-3.sz{
-				//margin: 0 auto; 
-				text-align: center;
-			}
-			.total {
-				border-right: 2px solid #f7f7f7;
-				font-size: 10pt;
-			}
-			.title_k {
-				border-left: 2px solid #ece79c ;
-				border-right: 2px solid white ;
-			}
-			.merge
-			{
-				border-left: 1px solid #f7f7f7 !important; 
-				border-right: 1px solid #f7f7f7 !important; 
-			}
-			
-			footer {
-				position: fixed;
-				bottom: -47px;
-				font-family: Arial, sans-serif; 
-				color: black; 
-				font-size: 14px; 
-				font-weight: normal;
-				text-align: center; 
-				opacity: .3;
-				padding: 30.5px;
-			}
-			
-			table{
-				//table-layout: fixed;
-				border-collapse: collapse; 
-			}			
-			th {
-				text-align: center;			
-				font-size: 10pt;
-				color: #ece79c;
-				background: #1e3689;							
-				height:25px;
-			}
-			td {	
-				padding: 5px;
-				height: 30px;
-				font-size: 8pt;
-				font-family: chapaza; 
-				//font-family: helvetica;
-				word-wrap: break-word;
-			}
-			h2
-			{
-				font-family: courier;
-			}
-        </style>
-        <title></title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <title>project_unam</title>
     </head>
     <body>
 	<?php
 	
+		// define variables
+		$id_def = $_GET['valueID'];
+		$fechaInicial_def = '2021-01-01';
+		$fechaFinal_def = '2021-12-31';
+			
 		// string connection
         $server = mysqli_connect("localhost", "root", "Donut.38", "unam");
 		
@@ -99,8 +29,7 @@
 		(!$server->set_charset("utf8")) {
 			echo "<h3>No se ha podido conectar PHP - MySQL, verifique sus datos.</h3><hr><br>";
 		}
-				
-		
+						
 		$query_k = query_creator(0);
         $result =  $server->query($query_k);
 		
@@ -109,7 +38,7 @@
 			<main>
 			<div class='row border-bottom'>
 			<div  class='container'>
-				<img src='./img/logo.jpg' style='width:200px; max-width:130px; float: left;'/>
+				<img src='./img/logo.jpg' style='th:200px; max-width:130px; float: left;'/>
 				<img src='./img/logo.jpg' style='width:200px; max-width:130px; float: right;'/>
 				<h3 class='col-lg-3 sz' style='font-family: mermaid;'>Instituto de Investigación de Materiales</h3>
 				<h4 class='col-lg-3 sz' style='font-family: mermaid;'>UNAM</h4>
@@ -131,7 +60,7 @@
 			echo"
 			<div id='help'>
 			<h2 class='col-lg-3 sz'><b>Apoyo a la Investigación</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>DESCRIPCIÓN</th>
 					<th class='title_k'>FECHA</th>
@@ -173,7 +102,7 @@
 			echo"			
 			<div id='article'> 
 			<h2 class='col-lg-3 sz'><b>Artículos</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>NOMBRE</th>
 					<th class='title_k'>FECHA</th>
@@ -186,17 +115,17 @@
 			{
 				echo "
 				<tr>
-					<td width=292px style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
+					<td width=236px style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
 					<td style= 'text-align: center;'>".$var_fila["anio"]."</td>							
 					<td style= 'text-align: left;'>".$var_fila["doi"]."</td>
-					<td width=49px style= 'text-align: center;'>".$var_fila["citas"]."</td>				
+					<td width=38px style= 'text-align: center;'>".$var_fila["citas"]."</td>				
 					<td style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["estado"]."</td>				
 				</tr>";	
 			}	
 			
 			echo "<tr>
-					<td colspan='2' style = 'background-color:#ffffff; border-left: 2px solid white !important; border-bottom: 2px solid white !important;'/>
-					<td colspan='3' class= 'total' >TOTAL: $result->num_rows</th>				
+					<td colspan='3' style = 'background-color:#ffffff; border-left: 2px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='2' class= 'total' >TOTAL: $result->num_rows</th>				
 				</tr>	
 			</table> </div>";
 		}
@@ -214,7 +143,7 @@
 			echo"
 			<div id='disclosure'>
 			<h2 class='col-lg-3 sz'><b>Artículos de Divulgación</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>NOMBRE</th>
 					<th class='title_k'>FECHA</th>
@@ -225,8 +154,8 @@
 			{
 				echo "
 				<tr>
-					<td width=188px style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
-					<td style= 'text-align: center;'>".$var_fila["anio"]."</td>				
+					<td style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
+					<td width=88px style= 'text-align: center;'>".$var_fila["anio"]."</td>				
 					<td style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["revista"]."</td>				
 				</tr>";	
 			}	
@@ -252,7 +181,7 @@
 			echo"			
 			<div id='chapter'> 
 			<h2 class='col-lg-3 sz'><b>Capítulo de Libro</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>NOMBRE</th>
 					<th class='title_k'>FECHA</th>
@@ -298,7 +227,7 @@
 			echo"			
 			<div id='body'> 
 			<h2 class='col-lg-3 sz'><b>Cuerpos Colegiados</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>NOMBRE</th>
 					<th class='title_k'>LUGAR</th>
@@ -311,9 +240,9 @@
 			{
 				echo "
 				<tr>
-					<td width=238px style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
-					<td style= 'text-align: center;'>".$var_fila["lugar"]."</td>
-					<td width=188px style= 'text-align: left;'>".$var_fila["actividad"]."</td>				
+					<td width=188px style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
+					<td width=49px style= 'text-align: center;'>".$var_fila["lugar"]."</td>
+					<td width=238px style= 'text-align: left;'>".$var_fila["actividad"]."</td>				
 					<td style= 'text-align: center;'>".$var_fila["inicio"]."</td>											
 					<td style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["final"]."</td>				
 				</tr>";	
@@ -340,7 +269,7 @@
 			echo"			
 			<div id='course'> 
 			<h2 class='col-lg-3 sz'><b>Cursos</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>NOMBRE</th>
 					<th class='title_k'>INSTITUCIÓN</th>
@@ -362,10 +291,10 @@
 					<td style= 'text-align: center;'>".$var_fila["institucion"]."</td>
 					<td width=38px style= 'text-align: center;'>".$var_fila["semestre"]."</td>	
 					<td width=38px style= 'text-align: center;'>".$var_fila["hora"]."</td>		
-					<td style= 'text-align: left;'>".$var_fila["tipo"]."</td>		
+					<td width=49px style= 'text-align: left;'>".$var_fila["tipo"]."</td>		
 					<td width=58px style= 'text-align: center;'>".$var_fila["inicio"]."</td>		
 					<td width=58px style= 'text-align: center;'>".$var_fila["final"]."</td>		
-					<td style= 'text-align: left;'>".$var_fila["noalumno"]."</td>					
+					<td style= 'text-align: center;'>".$var_fila["noalumno"]."</td>					
 					<td style= 'text-align: center;'>".$var_fila["anio"]."</td>											
 					<td width=48px style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["grado"]."</td>				
 				</tr>";	
@@ -383,7 +312,7 @@
 		}
 				
 		//< %-----------------------------------------% >
-				
+			
 		$query_VII = query_creator(7);
         $result =  $server->query($query_VII);
 		
@@ -392,7 +321,7 @@
 			echo"
 			<div id='develop'> 
 			<h2 class='col-lg-3 sz'><b>Desarrollo Tecnológico</b></h2>
-			<table style='width: 682px ' align = 'center' class='merge'>
+			<table style='width: 682px ' align = 'center'> 
 				<tr>
 					<th style='title_k'>DESCIRPCIÓN</th>
 					<th class='title_k'>FECHA</th>
@@ -419,6 +348,54 @@
 		else {
 			//do nothing
 		}
+		
+		//< %-----------------------------------------% >
+			
+		$query_VIII = query_creator(8);
+        $result =  $server->query($query_VIII);
+		
+		if($result->num_rows>0) //  draw estudiantes
+		{
+			echo"
+			<div id='students'> 
+			<h2 class='col-lg-3 sz'><b>Estudiantes</b></h2>
+			<table style='width: 682px ' align = 'center'> 
+				<tr>
+					<th style='title_k'>NOMBRES</th>
+					<th class='title_k'>APELLIDOS</th>
+					<th class='title_k'>NIVEL</th>
+					<th class='title_k'>SITUACIÓN</th>
+					<th class='title_k'>FECHA</th>
+					<th class='title_k'>INICIO</th>
+					<th class='title_k'>TÉRMINO</th>
+					<th style='border-right: 2px solid #ece79c !important;'>COTUTOR</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
+					<td style= 'text-align: left;'>".$var_fila["apellido"]."</td>
+					<td style= 'text-align: center;'>".$var_fila["nivel"]."</td>			
+					<td style= 'text-align: center;'>".$var_fila["situacion"]."</td>			
+					<td style= 'text-align: center;'>".$var_fila["fecha"]."</td>			
+					<td style= 'text-align: center;'>".$var_fila["inicio"]."</td>			
+					<td style= 'text-align: center;'>".$var_fila["final"]."</td>						
+					<td style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["cotutor"]."</td>				
+				</tr>";	
+			}	
+			
+			echo "<tr>
+					<td colspan='5' style = 'background-color:#ffffff; border-left: 2px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='3' class= 'total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div>";
+		}
+		
+		else {
+			//do nothing
+		}
 				
 		//< %-----------------------------------------% >
 				
@@ -430,7 +407,7 @@
 			echo"
 			<div id='stimulus'> 
 			<h2 class='col-lg-3 sz'><b>Estímulos</b></h2>
-			<table style='width: 482px ' align = 'center' class='merge'>
+			<table style='width: 482px ' align = 'center'> 
 				<tr>
 					<th class='title_k'>ESTÍMULO</th>
 					<th style='border-right: 2px solid #1e3689 !important;'>FECHA</th> 
@@ -439,8 +416,8 @@
 			while ($var_fila=$result->fetch_array())
 			{
 				echo "<tr>
-						<td style='text-align: center;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["estimulo"]."</td>
-						<td style= 'text-align: center;border-right: 2px solid #f7f7f7 !important;'>".$var_fila["anio"]."</td>
+						<td style='text-align:center; border-left: 2px solid #f7f7f7 !important;'>".$var_fila["estimulo"]."</td>
+						<td style= 'text-align:center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["anio"]."</td>
 					</tr>";	
 			}	
 			
@@ -465,7 +442,7 @@
 			echo"
 			<div id = 'events'> 
 			<h2 class='col-lg-3 sz'><b>Eventos</b></h2>	
-			<table style='width: 682px; ' align = 'center' class='merge'>
+			<table style='width: 682px; ' align = 'center'> 
 				<tr>
 					<th class='title_k'>NOMBRE</th>
 					<th class='title_k'>TIPO</th>
@@ -482,7 +459,7 @@
 					<td width=50px style= 'text-align: center;'>".$var_fila["tipoEvento"]."</td> 
 					<td width=55px style= 'text-align: center;'>".$var_fila["tipoParticipacion"]."</td>
 					<td style='text-align: left;'>".$var_fila["titulo"]."</td> 	
-					<td width=50px style= 'text-align: center;border-right: 2px solid #f7f7f7 !important;'>".$var_fila["anio"]."</td> 
+					<td width=50px style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["anio"]."</td> 
 				</tr>";		
 			}
 				
@@ -494,9 +471,276 @@
 		}
 		else
 		{
+			//echo "N/A";		
+		}
+		
+		//< %-----------------------------------------% >
+		
+		$query_XIII = query_creator(13);		
+        $result =  $server->query($query_XIII);
+    		
+		if($result->num_rows>0)	//  draw libr0
+		{
+			echo"
+			<div id = 'book'> 
+			<h2 class='col-lg-3 sz'><b>Libro</b></h2>	
+			<table style='width: 682px; ' align = 'center'>
+				<tr> 
+					<th class='title_k'>NOMBRE</th>
+					<th class='title_k'>FECHA</th>
+					<th style='border-right: 2px solid #ece79c !important;'>EDITORIAL</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='text-align: text-left;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td> 
+					<td width=90px style= 'text-align: center;'>".$var_fila["anio"]."</td> 
+					<td width=110px style= 'text-align:center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["editorial"]."</td> 
+				</tr>";		
+			}
+				
+			echo "<tr>
+					<td style = 'background-color:#ffffff; border-left: 3px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='2' class='total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div> </main>";	
+		}
+		else
+		{
+			//echo "N/A";
+		}
+				
+		//< %-----------------------------------------% >
+		
+		$query_XIV = query_creator(14);		
+        $result =  $server->query($query_XIV);
+    		
+		if($result->num_rows>0)	//  draw m4terial 
+		{
+			echo"
+			<div id = 'matter'> 
+			<h2 class='col-lg-3 sz'><b>Material Didáctico</b></h2>	
+			<table style='width: 582px; ' align = 'center'>
+				<tr> 
+					<th class='title_k'>NOMBRE</th>
+					<th class='title_k'>FECHA</th>
+					<th style='border-right: 2px solid #ece79c !important;'>LUGAR</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='text-align: text-left;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td> 
+					<td width=100px style= 'text-align: center;'>".$var_fila["anio"]."</td> 
+					<td width=160px style= 'text-align:center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["lugar"]."</td> 
+				</tr>";		
+			}
+				
+			echo "<tr>
+					<td colspan='2' style = 'background-color:#ffffff; border-left: 3px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td class='total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div> </main>";	
+		}
+		else
+		{
+			//echo "N/A";
+		}
+				
+		//< %-----------------------------------------% >
+		
+		$query_XV = query_creator(15);		
+        $result =  $server->query($query_XV);
+    		
+		if($result->num_rows>0)	//  draw m€morias 
+		{
+			echo"
+			<div id = 'memory'> 
+			<h2 class='col-lg-3 sz'><b>Memorias en Extenso</b></h2>	
+			<table style='width: 682px; ' align = 'center'>
+				<tr> 
+					<th class='title_k'>NOMBRE</th>
+					<th class='title_k'>LUGAR</th>
+					<th style='border-right: 2px solid #ece79c !important;'>FECHA</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='text-align: text-left;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td> 
+					<td width=220px style= 'text-align: center;'>".$var_fila["lugar"]."</td> 
+					<td width=100px style= 'text-align:center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["anio"]."</td> 
+				</tr>";		
+			}
+				
+			echo "<tr>
+					<td style = 'background-color:#ffffff; border-left: 3px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='2' class='total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div> </main>";	
+		}
+		else
+		{
+			//echo "N/A";
+		}
+				
+		//< %-----------------------------------------% >
+		
+		$query_XVI = query_creator(16);		
+        $result =  $server->query($query_XVI);
+    		
+		if($result->num_rows>0)	//  draw o₺rasActs 
+		{
+			echo"
+			<div id = 'other'> 
+			<h2 class='col-lg-3 sz'><b>Otras Actividades</b></h2>	
+			<table style='width: 582px; ' align = 'center'>
+				<tr> 
+					<th class='title_k'>DESCIRPCIÓN</th>
+					<th class='title_k'>FECHA</th>
+					<th style='border-right: 2px solid #ece79c !important;'>TIPO</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='text-align: text-left;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["descripcion"]."</td> 
+					<td width=99px style= 'text-align: center;'>".$var_fila["anio"]."</td> 
+					<td width=88px style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["tipo"]."</td> 
+				</tr>";		
+			}
+				
+			echo "<tr>
+					<td style = 'background-color:#ffffff; border-left: 3px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='2' class='total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div> </main>";	
+		}
+		else
+		{
 			//echo "N/A";
 		}
 		
+		//< %-----------------------------------------% >
+		
+		$query_XVII = query_creator(17);		
+        $result =  $server->query($query_XVII);
+    		
+		if($result->num_rows>0)	//  draw ₱atentes 
+		{
+			echo"
+			<div id = 'patent'> 
+			<h2 class='col-lg-3 sz'><b>Patentes</b></h2>	
+			<table style='width: 682px; ' align = 'center'>
+				<tr> 
+					<th class='title_k'>NOMBRE</th>
+					<th class='title_k'>FECHA</th>
+					<th class='title_k'>EXPEDIENTE</th>
+					<th style='border-right: 2px solid #1e3689 !important;'>ESTATUS</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='text-align: text-left;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td> 
+					<td width=99px style= 'text-align: center;'>".$var_fila["anio"]."</td>  
+					<td width=99px style= 'text-align: center;'>".$var_fila["expediente"]."</td> 
+					<td width=93px style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["estado"]."</td> 
+				</tr>";		
+			}
+				
+			echo "<tr>
+					<td colspan='2' style = 'background-color:#ffffff; border-left: 3px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='2' class='total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div> </main>";	
+		}
+		else
+		{
+			//echo "N/A";
+		}
+	
+		//< %-----------------------------------------% >
+		
+		$query_XVIII = query_creator(18);		
+        $result =  $server->query($query_XVIII);
+    		
+		if($result->num_rows>0)	//  draw ₱remios
+		{
+			echo"
+			<div id = 'prices'> 
+			<h2 class='col-lg-3 sz'><b>Premios</b></h2>	
+			<table style='width: 682px; ' align = 'center'>
+				<tr> 
+					<th class='title_k'>NOMBRE</th>
+					<th class='title_k'>DESCRIPCION</th>
+					<th class='title_k'>TIPO</th>
+					<th style='border-right: 2px solid #1e3689 !important;'>FECHA</th>
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "
+				<tr>
+					<td style='text-align: text-left;border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td> 
+					<td width=288px style= 'text-align: left;'>".$var_fila["descripcion"]."</td>  
+					<td style= 'text-align: center;'>".$var_fila["tipo"]."</td> 
+					<td width=99px style= 'text-align: center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["fecha"]."</td> 
+				</tr>";		
+			}
+				
+			echo "<tr>
+					<td colspan='2' style = 'background-color:#ffffff; border-left: 3px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td colspan='2' class='total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div> </main>";	
+		}
+		else
+		{
+			//echo "N/A";
+		}
+				
+		//< %-----------------------------------------% >
+				
+		$query_XIX = query_creator(19);
+        $result =  $server->query($query_XIX);
+		
+		if($result->num_rows>0) //  draw re₽orteTec
+		{
+			echo"
+			<div id='report'> 
+			<h2 class='col-lg-3 sz'><b>Reportes Técnicos</b></h2>
+			<table style='width: 682px ' align = 'center'> 
+				<tr>
+					<th class='title_k'>NOMBRE</th>
+					<th style='border-right: 2px solid #1e3689 !important;'>FECHA</th> 
+				</tr>";
+		
+			while ($var_fila=$result->fetch_array())
+			{
+				echo "<tr>
+						<td style='text-align:left; border-left: 2px solid #f7f7f7 !important;'>".$var_fila["nombre"]."</td>
+						<td width=92px style= 'text-align:center; border-right: 2px solid #f7f7f7 !important;'>".$var_fila["anio"]."</td>
+					</tr>";	
+			}	
+			
+			echo "<tr>
+					<td style = 'background-color:#ffffff; border-left: 2px solid white !important; border-bottom: 2px solid white !important;'/>
+					<td  class= 'total' >TOTAL: $result->num_rows</th>				
+				</tr>	
+			</table> </div>";
+		}
+		
+		else {
+			//do nothing
+		}
+
 		$server->close();
 		
 		//---------------------------#
@@ -505,10 +749,10 @@
 		
 		function query_creator ($query_ID)
 		{
-			// parameters --> such umportant
-			$id = $_GET['valueID'];
-			$fechaInicial = '2021-01-01';
-			$fechaFinal = '2021-12-31';
+			// set parameters --> such umportant
+			$id = $GLOBALS['id_def'];
+			$fechaInicial = $GLOBALS['fechaInicial_def'];
+			$fechaFinal = $GLOBALS['fechaFinal_def'];
 			
 			// nombreInv
 			if ($query_ID == 0){
@@ -550,13 +794,13 @@
 			}			
 			// cuerpoCol
 			else if ($query_ID == 5){
-				$query_template = "select c.CUERPO nombre, c.LUGARCC lugar, IFNULL(c.ACTIVIDAD, '') actividad, DATE_FORMAT(c.FECHAINICIO, '%d/%m/%Y') inicio, IFNULL(DATE_FORMAT(c.FECHATERMINO, '%d/%m/%Y'), '-') final from cuerposcolegiados as c 
+				$query_template = "select c.CUERPO nombre, c.LUGARCC lugar, SUBSTRING_INDEX(IFNULL(c.ACTIVIDAD, ''),'. ', 2) actividad, DATE_FORMAT(c.FECHAINICIO, '%d/%m/%Y') inicio, IFNULL(DATE_FORMAT(c.FECHATERMINO, '%d/%m/%Y'), '-') final from cuerposcolegiados as c 
 				  where c.INVESTIGADOR_IDINV = $id
 				order by inicio";
 			}
 			// cursos
 			else if ($query_ID == 6){
-				$query_template = "select c.NOMBRE nombre, i.NOMBRE institucion, REPLACE(IFNULL(c.SEMESTRE, '-'), 'NULL', '-') semestre, IFNULL(c.HORAS, '0.00') hora , IFNULL(t.NOMBRE, 'Sin tipo') tipo,  IFNULL(DATE_FORMAT(c.FECHAINICIO, '%d/%m/%Y'), '-') inicio, IFNULL(DATE_FORMAT(c.FECHATERMINO, '%d/%m/%Y'), '-') final, IFNULL(c.NOALUMNOS, 'Sin dato') noalumno, IFNULL(c.ANIOINFORME, '') anio, g.NOMDG grado from curso as c 
+				$query_template = "select c.NOMBRE nombre, i.NOMBRE institucion, REPLACE(IFNULL(c.SEMESTRE, '-'), 'NULL', '-') semestre, IFNULL(c.HORAS, '0.00') hora , IFNULL(t.NOMBRE, 'Sin tipo') tipo,  IFNULL(DATE_FORMAT(c.FECHAINICIO, '%d/%m/%Y'), '-') inicio, IFNULL(DATE_FORMAT(c.FECHATERMINO, '%d/%m/%Y'), '-') final, IFNULL(c.NOALUMNOS, '0') noalumno, IFNULL(c.ANIOINFORME, '') anio, g.NOMDG grado from curso as c 
 				  left join gradodocencia g on c.GRADODOCENCIA_IDDG = g.IDDG
 				  left join institucion i on c.INSTITUCION_IDINST = i.IDINST
 				  left join tipo t on c.TIPO_IDTIPO = t.IDTIPO
@@ -624,7 +868,7 @@
 				$query_template = "select o.DESCRIPCIONOA descripcion, DATE_FORMAT(o.ANIOOA, '%d/%m/%Y') anio, t.NOMOA tipo from otrasactividades as o
 				  left join tipootrasactividades t on o.TIPOOTRASACTIVIDADES_IDTIPOOA = t.IDTIPOOA
                   where o.INVESTIGADOR_IDINV = $id
-				  and o.ANIOA between '$fechaInicial' and '$fechaFinal'
+				  and o.ANIOOA between '$fechaInicial' and '$fechaFinal'
 				order by anio";
 			}	
 			// patente
@@ -661,18 +905,11 @@
 			return $query_template;
 		}
 	?>    
-		
-	<footer >
-		<a href='https://www.iim.unam.mx/inicio.html' >IIM &copy; 2022</a>
-	</footer>								
+	<footer>
+	<!--	-->	
+	</footer>							
     </body>
 	
-<!--
-Created by                 
- Yb  db  dP.d88 8d8b. 
-  YbdPYbdP 8  8 8P Y8 
-   YP  YP  `Y88 8   8 
--->
 </html>
 
 <script type='text/javascript'>

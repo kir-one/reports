@@ -148,7 +148,7 @@
                                                                 <b style="color: #777777; opacity: 0.3;">Create by w@n</b>
                                                                 <br /><br />
                                                                 Please enter your id<br /><br />
-																<form action="master.php" method="POST">
+																<form action="master_page.php" method="POST">
 																	<b style="color: #777777;">UserID: </b> <input type="text" id="ID" name="ID" required minlength="1" maxlength="6" size="10"><br />
 																
                                                             </div>

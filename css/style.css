@@ -1,0 +1,60 @@
+/* striped propierty */
+	tbody tr:nth-child(odd) {
+	   background-color: #f7f7f7;
+	}
+	tr:nth-child(even) td {
+		border-left: 2px solid #f7f7f7 !important; 
+		border-bottom: 2px solid #f7f7f7 !important;
+	}
+	tr:nth-child(odd) td {
+		border: 2px solid white !important;
+	}					
+	table th:nth-child(odd) {
+		color: #1e3689;
+		background: #ece79c;
+	}			
+	
+/* custom tags */
+	.col-lg-3.sz{
+		//margin: 0 auto; 
+		text-align: center;
+	}
+	.total {
+		border-right: 2px solid #f7f7f7;
+		font-size: 10pt;
+	}
+	.title_k {
+		border-left: 2px solid #ece79c ;
+		border-right: 2px solid white ;		
+	}
+	
+/* own template */	
+	footer {
+		position: fixed;
+		bottom: -47px;
+		opacity: .2;
+		padding: 30.5px;
+	}	
+	table{
+		//table-layout: fixed;
+		border-collapse: collapse; 
+	}			
+	th {
+		text-align: center;			
+		font-size: 10pt;
+		color: #ece79c;
+		background: #1e3689;							
+		height:25px;
+	}
+	td {	
+		padding: 5px;
+		height: 30px;
+		font-size: 8pt;
+		font-family: chapaza; 
+		//font-family: helvetica;
+		word-wrap: break-word;
+	}
+	h2
+	{
+		font-family: courier;
+	}

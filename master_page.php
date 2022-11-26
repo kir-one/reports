@@ -33,7 +33,8 @@
 	$fontMetrics = new FontMetrics($canvas, $options);
 	$w = $canvas->get_width();
 	$h = $canvas->get_height();
-	$font = $fontMetrics->getFont('Arial, sains row');
+	// footer font
+	$font = $fontMetrics->getFont('sans-serif', 'normal');
 
 	$txtHeight = $fontMetrics->getFontHeight($font, 14);
 	$textWidth = $fontMetrics->getTextWidth($text, $font, 14);
